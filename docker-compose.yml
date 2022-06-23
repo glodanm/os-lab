@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  greenhouse-service:
+    build: .
+    image: glodanm/greenhouse-service
+    container_name: greenhouse-service
+    depends_on:
+      - mariadb
+    environment:
+      MARIADB_HOST: mariadb
+    ports:
+      - "8088:8088"
+    restart: always
+
+volumes:
+  mariadb-data:

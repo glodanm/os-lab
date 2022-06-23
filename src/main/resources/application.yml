@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mariadb://${MARIADB_HOST:localhost}:3306/greenhouse_db?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
